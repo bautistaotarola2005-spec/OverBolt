@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ClashManager.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="560"
+        x:Class="ClashManager.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/clash-manager-logo.ico"
+        Width="900" Height="560"
+        Title="Clash Manager">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="200,*">
+
+        <DockPanel Grid.Column="0" Background="#1E1E2E">
+
+            <TextBlock DockPanel.Dock="Top" Text="Clash Manager" FontSize="18" FontWeight="Bold"
+                       Foreground="White" Margin="16,20,16,20" />
+
+            <Button DockPanel.Dock="Bottom" Content="Cerrar sesión" Command="{Binding SalirCommand}"
+                    Margin="16" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+
+            <StackPanel Spacing="4" Margin="8,0">
+                <Button Content="Inicio" Command="{Binding IrAInicioCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+                <Button Content="Roster" Command="{Binding IrARosterCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+                <Button Content="Campeones" Command="{Binding IrACampeonesCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+                <Button Content="Partidas" Command="{Binding IrAPartidasCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
+            </StackPanel>
+
+        </DockPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding VistaActual}" Margin="24" />
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ClashManager.ViewModels"
+             xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
+             x:Class="ClashManager.Views.InicioView"
+             x:DataType="vm:InicioViewModel">
+
+    <Design.DataContext>
+        <vm:InicioViewModel />
+    </Design.DataContext>
+
+    <StackPanel Spacing="24" VerticalAlignment="Center">
+
+        <svg:Svg Path="/Assets/export62.svg" Width="160" Height="90"
+                  Stretch="Uniform" HorizontalAlignment="Center" />
+
+        <Border Background="#1E1E2E" CornerRadius="10" Padding="24">
+            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                <TextBlock Text="Próximo Clash" FontSize="14" Foreground="#38BDF8"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="19 de septiembre, 17:00" FontSize="14" Foreground="#9CA3AF"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding TiempoRestante}" FontSize="32" FontWeight="Bold"
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,8,0,0" />
+            </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E2E" CornerRadius="10" Padding="20">
+            <StackPanel Spacing="6">
+                <TextBlock Text="Novedades del parche" FontSize="13" FontWeight="Bold" Foreground="#38BDF8" />
+                <TextBlock Text="{Binding NotasParche}" TextWrapping="Wrap" Foreground="White" />
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+
+</UserControl>
