@@ -1,43 +1,52 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ClashManager.ViewModels"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="560"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="580"
         x:Class="ClashManager.Views.MainWindow"
         x:DataType="vm:MainViewModel"
-        Icon="/Assets/clash-manager-logo.ico"
-        Width="900" Height="560"
-        Title="Clash Manager">
+        Icon="/Assets/logo.ico"
+        Width="1000" Height="580"
+        MinWidth="900" MinHeight="520"
+        Background="#12121A"
+        Title="OverBolt">
 
     <Design.DataContext>
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="200,*">
+    <Grid ColumnDefinitions="212,*">
 
-        <DockPanel Grid.Column="0" Background="#1E1E2E">
+        <Border Grid.Column="0" Background="#191922" BorderBrush="#26263A" BorderThickness="0,0,1,0">
+            <DockPanel>
 
-            <TextBlock DockPanel.Dock="Top" Text="Clash Manager" FontSize="18" FontWeight="Bold"
-                       Foreground="White" Margin="16,20,16,20" />
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="11"
+                            Margin="18,22,18,10">
+                    <svg:Svg Path="/Assets/logo.svg" Width="30" Height="30" Stretch="Uniform"
+                             VerticalAlignment="Center" />
+                    <TextBlock Text="OverBolt" FontSize="18" FontWeight="Bold"
+                               Foreground="White" VerticalAlignment="Center" />
+                </StackPanel>
 
-            <Button DockPanel.Dock="Bottom" Content="Cerrar sesión" Command="{Binding SalirCommand}"
-                    Margin="16" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+                <Border DockPanel.Dock="Top" Height="1" Background="#26263A" Margin="18,0,18,14" />
 
-            <StackPanel Spacing="4" Margin="8,0">
-                <Button Content="Inicio" Command="{Binding IrAInicioCommand}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
-                <Button Content="Roster" Command="{Binding IrARosterCommand}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
-                <Button Content="Campeones" Command="{Binding IrACampeonesCommand}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
-                <Button Content="Partidas" Command="{Binding IrAPartidasCommand}"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" />
-            </StackPanel>
+                <Button DockPanel.Dock="Bottom" Classes="accion" Content="Cerrar sesión"
+                        Command="{Binding SalirCommand}" Margin="14,10,14,16"
+                        HorizontalAlignment="Stretch" />
 
-        </DockPanel>
+                <StackPanel Spacing="3" Margin="12,0">
+                    <Button Classes="nav" Content="Inicio" Command="{Binding IrAInicioCommand}" />
+                    <Button Classes="nav" Content="Roster" Command="{Binding IrARosterCommand}" />
+                    <Button Classes="nav" Content="Héroes" Command="{Binding IrAHeroesCommand}" />
+                    <Button Classes="nav" Content="Partidas" Command="{Binding IrAPartidasCommand}" />
+                </StackPanel>
 
-        <ContentControl Grid.Column="1" Content="{Binding VistaActual}" Margin="24" />
+            </DockPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1" Content="{Binding VistaActual}" Margin="26,24,26,24" />
 
     </Grid>
 

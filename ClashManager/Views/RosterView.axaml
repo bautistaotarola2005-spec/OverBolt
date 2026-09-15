@@ -3,7 +3,7 @@
              xmlns:vm="using:ClashManager.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="420"
+             mc:Ignorable="d" d:DesignWidth="740" d:DesignHeight="440"
              x:Class="ClashManager.Views.RosterView"
              x:DataType="vm:RosterViewModel">
 
@@ -13,102 +13,125 @@
 
     <Grid RowDefinitions="Auto,Auto,*">
 
-        <TextBlock Grid.Row="0" Text="Roster" FontSize="24" FontWeight="Bold" Margin="0,0,0,2" />
-        <TextBlock Grid.Row="1" Text="Los titulares del equipo" FontSize="13" Foreground="#9CA3AF"
-                   Margin="0,0,0,16" />
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,3">
+            <TextBlock Grid.Column="0" Classes="titulo" Text="Roster" VerticalAlignment="Center" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="9" VerticalAlignment="Center">
+                <TextBlock Text="Equipo" FontSize="12" FontWeight="Bold" Foreground="#F97316"
+                           VerticalAlignment="Center" />
+                <TextBox Text="{Binding NombreEquipo}" Watermark="Nombre del equipo"
+                         Width="215" FontSize="13" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
 
-        <!-- Nota: estas 4 tarjetas están escritas a mano por índice (Jugadores[0]..[3]) como paso
-             intermedio. Cuando agreguemos alta/baja de jugadores esto vuelve a ser un ItemsControl
-             recorriendo la colección completa, sin tarjetas fijas. -->
-        <UniformGrid Grid.Row="2" Columns="5">
+        <TextBlock Grid.Row="1" Classes="subtitulo" Text="{Binding Composicion}" Margin="0,0,0,18" />
 
-            <Border Background="#1E1E2E" CornerRadius="10" Padding="16" Margin="6" VerticalAlignment="Stretch">
-                <Grid>
-                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Border Background="#38BDF8" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Jugadores[0].Rol}" FontSize="11" FontWeight="Bold" Foreground="#1E1E2E" />
+        <!-- Nota: las tarjetas de titulares estan escritas a mano por indice (Jugadores[0]..[3])
+             como paso intermedio, mas dos slots libres hasta completar el 6v6. Cuando agreguemos
+             alta/baja de jugadores esto vuelve a ser un ItemsControl sobre la coleccion completa. -->
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled">
+            <UniformGrid Columns="6" MinWidth="720">
+
+                <Border Classes="card" Padding="10" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Border Classes="badge" Padding="7,2" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Jugadores[0].Rol}" FontSize="10" FontWeight="Bold" Foreground="#10101A" />
+                            </Border>
+                            <TextBlock Text="{Binding Jugadores[0].BattleTag}" FontSize="16" FontWeight="Bold"
+                                       Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,14,0,4" />
+                            <TextBlock Text="{Binding Jugadores[0].Rango}" FontSize="11" Foreground="#9CA3AF"
+                                       TextAlignment="Center" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Background="#F97316" CornerRadius="11" Width="22" Height="22"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,2,2"
+                                IsVisible="{Binding Jugadores[0].EsCapitan}">
+                            <TextBlock Text="C" FontSize="12" FontWeight="Bold" Foreground="#10101A"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
-                        <TextBlock Text="{Binding Jugadores[0].NombreInvocador}" FontSize="18" FontWeight="Bold"
-                                   Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,16,0,4" />
-                        <TextBlock Text="{Binding Jugadores[0].Rango}" FontSize="12" Foreground="#9CA3AF"
+                    </Grid>
+                </Border>
+
+                <Border Classes="card" Padding="10" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Border Classes="badge" Padding="7,2" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Jugadores[1].Rol}" FontSize="10" FontWeight="Bold" Foreground="#10101A" />
+                            </Border>
+                            <TextBlock Text="{Binding Jugadores[1].BattleTag}" FontSize="16" FontWeight="Bold"
+                                       Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,14,0,4" />
+                            <TextBlock Text="{Binding Jugadores[1].Rango}" FontSize="11" Foreground="#9CA3AF"
+                                       TextAlignment="Center" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Background="#F97316" CornerRadius="11" Width="22" Height="22"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,2,2"
+                                IsVisible="{Binding Jugadores[1].EsCapitan}">
+                            <TextBlock Text="C" FontSize="12" FontWeight="Bold" Foreground="#10101A"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Classes="card" Padding="10" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Border Classes="badge" Padding="7,2" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Jugadores[2].Rol}" FontSize="10" FontWeight="Bold" Foreground="#10101A" />
+                            </Border>
+                            <TextBlock Text="{Binding Jugadores[2].BattleTag}" FontSize="16" FontWeight="Bold"
+                                       Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,14,0,4" />
+                            <TextBlock Text="{Binding Jugadores[2].Rango}" FontSize="11" Foreground="#9CA3AF"
+                                       TextAlignment="Center" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Background="#F97316" CornerRadius="11" Width="22" Height="22"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,2,2"
+                                IsVisible="{Binding Jugadores[2].EsCapitan}">
+                            <TextBlock Text="C" FontSize="12" FontWeight="Bold" Foreground="#10101A"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Classes="card" Padding="10" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Border Classes="badge" Padding="7,2" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Jugadores[3].Rol}" FontSize="10" FontWeight="Bold" Foreground="#10101A" />
+                            </Border>
+                            <TextBlock Text="{Binding Jugadores[3].BattleTag}" FontSize="16" FontWeight="Bold"
+                                       Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,14,0,4" />
+                            <TextBlock Text="{Binding Jugadores[3].Rango}" FontSize="11" Foreground="#9CA3AF"
+                                       TextAlignment="Center" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Border Background="#F97316" CornerRadius="11" Width="22" Height="22"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,2,2"
+                                IsVisible="{Binding Jugadores[3].EsCapitan}">
+                            <TextBlock Text="C" FontSize="12" FontWeight="Bold" Foreground="#10101A"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Classes="vacante" Margin="5" VerticalAlignment="Stretch">
+                    <StackPanel VerticalAlignment="Center" Spacing="2">
+                        <TextBlock Text="+" FontSize="30" FontWeight="Bold" Foreground="#38BDF8"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="libre" FontSize="10" Foreground="#6B7280"
                                    HorizontalAlignment="Center" />
                     </StackPanel>
-                    <Border Background="#D4AF37" CornerRadius="12" Width="24" Height="24"
-                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4"
-                            IsVisible="{Binding Jugadores[0].EsCapitan}">
-                        <TextBlock Text="C" FontWeight="Bold" Foreground="White"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </Grid>
-            </Border>
+                </Border>
 
-            <Border Background="#1E1E2E" CornerRadius="10" Padding="16" Margin="6" VerticalAlignment="Stretch">
-                <Grid>
-                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Border Background="#38BDF8" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Jugadores[1].Rol}" FontSize="11" FontWeight="Bold" Foreground="#1E1E2E" />
-                        </Border>
-                        <TextBlock Text="{Binding Jugadores[1].NombreInvocador}" FontSize="18" FontWeight="Bold"
-                                   Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,16,0,4" />
-                        <TextBlock Text="{Binding Jugadores[1].Rango}" FontSize="12" Foreground="#9CA3AF"
+                <Border Classes="vacante" Margin="5" VerticalAlignment="Stretch">
+                    <StackPanel VerticalAlignment="Center" Spacing="2">
+                        <TextBlock Text="+" FontSize="30" FontWeight="Bold" Foreground="#38BDF8"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="libre" FontSize="10" Foreground="#6B7280"
                                    HorizontalAlignment="Center" />
                     </StackPanel>
-                    <Border Background="#D4AF37" CornerRadius="12" Width="24" Height="24"
-                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4"
-                            IsVisible="{Binding Jugadores[1].EsCapitan}">
-                        <TextBlock Text="C" FontWeight="Bold" Foreground="White"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </Grid>
-            </Border>
+                </Border>
 
-            <Border Background="#1E1E2E" CornerRadius="10" Padding="16" Margin="6" VerticalAlignment="Stretch">
-                <Grid>
-                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Border Background="#38BDF8" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Jugadores[2].Rol}" FontSize="11" FontWeight="Bold" Foreground="#1E1E2E" />
-                        </Border>
-                        <TextBlock Text="{Binding Jugadores[2].NombreInvocador}" FontSize="18" FontWeight="Bold"
-                                   Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,16,0,4" />
-                        <TextBlock Text="{Binding Jugadores[2].Rango}" FontSize="12" Foreground="#9CA3AF"
-                                   HorizontalAlignment="Center" />
-                    </StackPanel>
-                    <Border Background="#D4AF37" CornerRadius="12" Width="24" Height="24"
-                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4"
-                            IsVisible="{Binding Jugadores[2].EsCapitan}">
-                        <TextBlock Text="C" FontWeight="Bold" Foreground="White"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </Grid>
-            </Border>
-
-            <Border Background="#1E1E2E" CornerRadius="10" Padding="16" Margin="6" VerticalAlignment="Stretch">
-                <Grid>
-                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Border Background="#38BDF8" CornerRadius="4" Padding="8,2" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Jugadores[3].Rol}" FontSize="11" FontWeight="Bold" Foreground="#1E1E2E" />
-                        </Border>
-                        <TextBlock Text="{Binding Jugadores[3].NombreInvocador}" FontSize="18" FontWeight="Bold"
-                                   Foreground="White" TextAlignment="Center" TextWrapping="Wrap" Margin="0,16,0,4" />
-                        <TextBlock Text="{Binding Jugadores[3].Rango}" FontSize="12" Foreground="#9CA3AF"
-                                   HorizontalAlignment="Center" />
-                    </StackPanel>
-                    <Border Background="#D4AF37" CornerRadius="12" Width="24" Height="24"
-                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4"
-                            IsVisible="{Binding Jugadores[3].EsCapitan}">
-                        <TextBlock Text="C" FontWeight="Bold" Foreground="White"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </Grid>
-            </Border>
-
-            <Border Background="#1E1E2E" BorderBrush="#38BDF8" BorderThickness="1.5"
-                    CornerRadius="10" Margin="6" VerticalAlignment="Stretch">
-                <TextBlock Text="+" FontSize="36" FontWeight="Bold" Foreground="#38BDF8"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Border>
-
-        </UniformGrid>
+            </UniformGrid>
+        </ScrollViewer>
 
     </Grid>
 

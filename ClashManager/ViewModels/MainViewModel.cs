@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -8,7 +8,7 @@ public partial class MainViewModel : ViewModelBase
 {
     private readonly InicioViewModel _inicioViewModel = new();
     private readonly RosterViewModel _rosterViewModel = new();
-    private readonly CampeonesViewModel _campeonesViewModel = new();
+    private readonly HeroesViewModel _heroesViewModel = new();
     private readonly PartidasViewModel _partidasViewModel = new();
 
     [ObservableProperty]
@@ -28,7 +28,7 @@ public partial class MainViewModel : ViewModelBase
     private void IrARoster() => VistaActual = _rosterViewModel;
 
     [RelayCommand]
-    private void IrACampeones() => VistaActual = _campeonesViewModel;
+    private void IrAHeroes() => VistaActual = _heroesViewModel;
 
     [RelayCommand]
     private void IrAPartidas() => VistaActual = _partidasViewModel;

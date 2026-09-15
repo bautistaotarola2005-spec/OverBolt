@@ -2,9 +2,7 @@
 
 public enum Rol
 {
-    Top,
-    Jungla,
-    Mid,
-    ADC,
-    Support
+    Tanque,
+    Daño,
+    Soporte
 }
