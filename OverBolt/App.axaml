@@ -1,0 +1,112 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="OverBolt.App"
+             xmlns:local="using:OverBolt"
+             RequestedThemeVariant="Dark">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <!-- Tarjeta elevada: borde mas claro que el fondo + sombra = sensacion de relieve -->
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="BorderBrush" Value="#2E2E42" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="BoxShadow" Value="0 3 12 0 #55000000" />
+        </Style>
+
+        <!-- Hueco hundido dentro de una tarjeta -->
+        <Style Selector="Border.tile">
+            <Setter Property="Background" Value="#15151F" />
+            <Setter Property="BorderBrush" Value="#26263A" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+
+        <!-- Slot libre del roster -->
+        <Style Selector="Border.vacante">
+            <Setter Property="Background" Value="#16161F" />
+            <Setter Property="BorderBrush" Value="#38BDF8" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+
+        <Style Selector="Border.badge">
+            <Setter Property="Background" Value="#38BDF8" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Padding" Value="8,2" />
+        </Style>
+
+        <Style Selector="Button.nav">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="12,9" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="#D1D5DB" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style Selector="Button.nav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#262636" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="Button.nav:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#2E2E42" />
+        </Style>
+
+        <Style Selector="Button.accion">
+            <Setter Property="Background" Value="#262636" />
+            <Setter Property="BorderBrush" Value="#38404F" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="12,9" />
+            <Setter Property="Foreground" Value="#D1D5DB" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.accion:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#32323F" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="Button.primario">
+            <Setter Property="Background" Value="#38BDF8" />
+            <Setter Property="Foreground" Value="#10101A" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.primario:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#5CCBFA" />
+        </Style>
+
+        <Style Selector="TextBlock.titulo">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="TextBlock.subtitulo">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="#9CA3AF" />
+        </Style>
+
+        <Style Selector="Expander">
+            <Setter Property="Background" Value="#1E1E2E" />
+            <Setter Property="BorderBrush" Value="#2E2E42" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+
+    </Application.Styles>
+</Application>

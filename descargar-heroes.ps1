@@ -19,7 +19,7 @@ param(
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$destino = Join-Path $PSScriptRoot "ClashManager\Assets\heroes"
+$destino = Join-Path $PSScriptRoot "OverBolt\Assets\heroes"
 New-Item -ItemType Directory -Force -Path $destino | Out-Null
 Write-Host ""
 Write-Host "Destino: $destino" -ForegroundColor DarkGray

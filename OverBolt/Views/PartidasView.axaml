@@ -1,0 +1,127 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OverBolt.ViewModels"
+             xmlns:models="using:OverBolt.Models"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
+             x:Class="OverBolt.Views.PartidasView"
+             x:DataType="vm:PartidasViewModel">
+
+    <Design.DataContext>
+        <vm:PartidasViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <TextBlock Grid.Row="0" Classes="titulo" Text="Partidas" Margin="0,0,0,3" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12" Margin="0,0,0,18">
+            <TextBlock Text="{Binding Balance}" FontSize="13" FontWeight="Bold" Foreground="#F97316" />
+            <TextBlock Text="·" FontSize="13" Foreground="#6B7280" />
+            <TextBlock Text="{Binding Winrate}" FontSize="13" Foreground="#9CA3AF" />
+            <TextBlock Text="· desplegá una partida para ver el detalle por jugador" FontSize="12"
+                       Foreground="#6B7280" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding Partidas}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="models:Partida">
+
+                        <Expander Margin="0,0,0,9" Padding="13"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Stretch">
+
+                            <Expander.Header>
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+
+                                    <Panel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,14,0">
+                                        <Border Background="#38BDF8" CornerRadius="5" Padding="9,3" MinWidth="68"
+                                                IsVisible="{Binding EsVictoria}">
+                                            <TextBlock Text="Victoria" FontSize="11" FontWeight="Bold"
+                                                       Foreground="#10101A" TextAlignment="Center" />
+                                        </Border>
+                                        <Border Background="#F87171" CornerRadius="5" Padding="9,3" MinWidth="68"
+                                                IsVisible="{Binding !EsVictoria}">
+                                            <TextBlock Text="Derrota" FontSize="11" FontWeight="Bold"
+                                                       Foreground="#10101A" TextAlignment="Center" />
+                                        </Border>
+                                    </Panel>
+
+                                    <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Mapa}" FontSize="16" FontWeight="Bold"
+                                                   Foreground="White" />
+                                        <TextBlock Text="{Binding Notas}" FontSize="12" Foreground="#9CA3AF"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Spacing="2" MinWidth="104"
+                                                VerticalAlignment="Center" Margin="12,0,0,0">
+                                        <TextBlock Text="{Binding FechaCorta}" FontSize="13" FontWeight="Bold"
+                                                   Foreground="White" TextAlignment="Right" />
+                                        <TextBlock Text="{Binding DuracionCorta}" FontSize="11"
+                                                   Foreground="#9CA3AF" TextAlignment="Right" />
+                                    </StackPanel>
+
+                                </Grid>
+                            </Expander.Header>
+
+                            <StackPanel Margin="0,10,0,4">
+
+                                <Grid ColumnDefinitions="*,86,44,44,44,82,82,82" Margin="0,0,0,6">
+                                    <TextBlock Grid.Column="0" Text="Jugador" FontSize="10" Foreground="#6B7280" />
+                                    <TextBlock Grid.Column="1" Text="Rol" FontSize="10" Foreground="#6B7280" />
+                                    <TextBlock Grid.Column="2" Text="E" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                    <TextBlock Grid.Column="3" Text="A" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                    <TextBlock Grid.Column="4" Text="M" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                    <TextBlock Grid.Column="5" Text="Daño" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                    <TextBlock Grid.Column="6" Text="Curación" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                    <TextBlock Grid.Column="7" Text="Mitigado" FontSize="10" Foreground="#6B7280" TextAlignment="Right" />
+                                </Grid>
+
+                                <Border Background="#2E2E42" Height="1" Margin="0,0,0,9" />
+
+                                <ItemsControl ItemsSource="{Binding Rendimientos}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="models:RendimientoJugador">
+                                            <Grid ColumnDefinitions="*,86,44,44,44,82,82,82" Margin="0,0,0,7">
+                                                <TextBlock Grid.Column="0" Text="{Binding BattleTag}" FontSize="13"
+                                                           FontWeight="Bold" Foreground="White" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Rol}" FontSize="12"
+                                                           Foreground="#38BDF8" />
+                                                <TextBlock Grid.Column="2" Text="{Binding Eliminaciones}" FontSize="13"
+                                                           Foreground="White" TextAlignment="Right" />
+                                                <TextBlock Grid.Column="3" Text="{Binding Asistencias}" FontSize="13"
+                                                           Foreground="White" TextAlignment="Right" />
+                                                <TextBlock Grid.Column="4" Text="{Binding Muertes}" FontSize="13"
+                                                           Foreground="White" TextAlignment="Right" />
+                                                <TextBlock Grid.Column="5" Text="{Binding DanoTexto}" FontSize="13"
+                                                           Foreground="#F97316" TextAlignment="Right" />
+                                                <TextBlock Grid.Column="6" Text="{Binding CuracionTexto}" FontSize="13"
+                                                           Foreground="#D1D5DB" TextAlignment="Right" />
+                                                <TextBlock Grid.Column="7" Text="{Binding DanoMitigadoTexto}" FontSize="13"
+                                                           Foreground="#D1D5DB" TextAlignment="Right" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,4,0,0">
+                                    <TextBlock Text="Total del equipo:" FontSize="11" Foreground="#6B7280" />
+                                    <TextBlock Text="{Binding Estadisticas}" FontSize="11" Foreground="#9CA3AF" />
+                                    <TextBlock Text="(elim / muer / asis)" FontSize="11" Foreground="#6B7280" />
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Expander>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </Grid>
+
+</UserControl>

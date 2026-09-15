@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OverBolt.ViewModels"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
+        x:Class="OverBolt.Views.LoginWindow"
+        x:DataType="vm:LoginViewModel"
+        Icon="/Assets/logo.ico"
+        Width="400" Height="500"
+        CanResize="False"
+        Background="#12121A"
+        WindowStartupLocation="CenterScreen"
+        Title="OverBolt - Ingresar">
+
+    <Design.DataContext>
+        <vm:LoginViewModel />
+    </Design.DataContext>
+
+    <Border Classes="card" Margin="28" Padding="30,34" VerticalAlignment="Center">
+        <StackPanel Spacing="13">
+
+            <svg:Svg Path="/Assets/logo.svg" Width="78" Height="78" Stretch="Uniform"
+                     HorizontalAlignment="Center" />
+
+            <TextBlock Text="OverBolt" FontSize="27" FontWeight="Bold" Foreground="White"
+                       HorizontalAlignment="Center" Margin="0,6,0,0" />
+            <TextBlock Text="Iniciá sesión para continuar" FontSize="13" Foreground="#9CA3AF"
+                       HorizontalAlignment="Center" Margin="0,0,0,10" />
+
+            <TextBox Watermark="Usuario" Text="{Binding NombreUsuario}" />
+            <TextBox Watermark="Contraseña" PasswordChar="*" Text="{Binding Contrasena}" />
+
+            <TextBlock Text="{Binding MensajeError}" Foreground="#F87171" FontSize="12"
+                       HorizontalAlignment="Center" TextWrapping="Wrap" />
+
+            <Button Classes="primario" Content="Ingresar" Command="{Binding IngresarCommand}"
+                    HorizontalAlignment="Stretch" Margin="0,6,0,0" />
+
+        </StackPanel>
+    </Border>
+</Window>
